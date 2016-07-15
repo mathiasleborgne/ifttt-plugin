@@ -10,6 +10,7 @@ def api_root():
 def api_articles():
     return 'List of ' + url_for('api_articles')
 
+
 @app.route('/articles/<articleid>')
 def api_article(articleid):
     return 'You are reading ' + articleid
