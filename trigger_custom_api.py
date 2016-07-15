@@ -15,7 +15,8 @@ def send_url(url):
 
 # print send_url("http://127.0.0.1:5000/")
 # print send_url("http://10.0.164.222:9090/")
-if args.local:
-    print send_url("http://localhost:5555/articles")
-else:
-    print send_url("http://syllogist.azurewebsites.net/articles")
+url_api = "http://localhost:5555/" if args.local \
+    else "http://syllogist.azurewebsites.net/"
+full_url_api = url_api + "robot_say"
+print "Getting API on:", full_url_api
+print send_url(full_url_api)

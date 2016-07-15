@@ -30,7 +30,7 @@ def api_article(articleid):
 
 
 @app.route('/robot_say')
-def api_article(articleid):
+def robot_say():
     print "Banged robot_say API"
     return "Banged robot_say API"
 
