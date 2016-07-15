@@ -42,7 +42,7 @@ def api_article(articleid):
 # This is the path to the upload directory
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 # These are the extension that we are accepting to be uploaded
-app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+app.config['ALLOWED_EXTENSIONS'] = set(["txt", "pdf", "png", "jpg", "jpeg", "gif", "db"])
 
 # For a given file, return whether it's an allowed type or not
 def allowed_file(filename):
@@ -61,14 +61,16 @@ def transfert():
 @app.route('/upload', methods=['POST'])
 def upload():
     # Get the name of the uploaded file
-    file = request.files['file']
+    file_upload = request.files['file']
     # Check if the file is one of the allowed types/extensions
-    if file and allowed_file(file.filename):
+    if file_upload and allowed_file(file_upload.filename):
         # Make the filename safe, remove unsupported chars
-        filename = secure_filename(file.filename)
+        filename = secure_filename(file_upload.filename)
         # Move the file form the temporal folder to
         # the upload folder we setup
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        path_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        print "path_file", path_file
+        file_upload.save(path_file)
         # Redirect the user to the uploaded_file route, which
         # will basicaly show on the browser the uploaded file
         return redirect(url_for('uploaded_file',
