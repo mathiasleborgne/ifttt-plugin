@@ -29,6 +29,12 @@ def api_article(articleid):
     return 'You are reading ' + articleid
 
 
+@app.route('/robot_say')
+def api_article(articleid):
+    print "Banged robot_say API"
+    return "Banged robot_say API"
+
+
 # File transfert, see:
 # http://code.runnable.com/UiPcaBXaxGNYAAAL/how-to-upload-a-file-to-the-server-in-flask-for-python
 
